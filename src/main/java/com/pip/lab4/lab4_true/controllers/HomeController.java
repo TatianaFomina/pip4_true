@@ -19,10 +19,10 @@ public class HomeController {
         return "index.html";
     }
 
-    @RequestMapping(value = "/user/registration", method = RequestMethod.GET)
+   /* @RequestMapping(value = "/user/registration", method = RequestMethod.GET)
     public String showRegistrationForm(WebRequest request, Model model) {
         UserDto userDto = new UserDto();
         model.addAttribute("user", userDto);
         return "registration";
-    }
+    }*/
 }

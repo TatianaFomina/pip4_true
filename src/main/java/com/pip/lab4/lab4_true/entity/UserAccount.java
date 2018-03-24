@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "users", schema = "s225128")//(name="user", schema="s225128")
+@Table(name = "users", schema = "s225128")
 public class UserAccount {
     @Id
     @GeneratedValue

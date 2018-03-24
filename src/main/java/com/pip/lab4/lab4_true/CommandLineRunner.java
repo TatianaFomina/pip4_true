@@ -23,10 +23,7 @@ public class CommandLineRunner implements org.springframework.boot.CommandLineRu
 
     @Override
     public void run(String... strings) throws Exception {
-        // Top beers from https://www.beeradvocate.com/lists/top/
-        Stream.of("ksusha", "adminnnn").forEach(name ->
-                repository.save(new UserAccount(name))
-        );
+        repository.save(new UserAccount("admin", "admin"));
         this.point_repository.save(new Point(0.0,0.0,0.0, true));
         repository.findAll().forEach(System.out::println);
     }

@@ -2,13 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
     <meta charset="UTF-8"/>
-    <title>4 лаба по Программированию интернет-приложений</title>
-    <link rel="stylesheet" href="/main.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Lab4</title>
+    <link rel="stylesheet" href="./style/index.css"/>
 </head>
 <body>
 
 
-<div className="container">
+<!--div className="container">
     <div class="col-md-12 top-menu">
         <h4 class="font-weight-bold text-center">4 лабораторная по предмету Программирование интернет-приложений</h4>
         <p class="font-weight-light text-center">Вариант 7661</p>
@@ -20,9 +22,44 @@
     <div id='root'></div>
 
 
+</div-->
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <a id="log-out" href="./index" onclick="goOut()" ><span class="glyphicon glyphicon-off"></span> Log out</a>
+            </button>
+            <a class="navbar-brand" >Tatiana Fomina, Ksenia Subbotina | Lab4 v7661</a>
+        </div>
+        <div class="collapse navbar-collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a disabled>Hello, <%=name%></a> </li>
+                <li><a href="./signin" onclick="goOut()" ><span class="glyphicon glyphicon-off"></span> Log out</a></li>
+            </ul>
+        </div>
+    </div>
 </div>
-<script src="https://fb.me/react-15.0.1.js"></script>
-<script src="https://fb.me/react-dom-15.0.1.js"></script>
+<div id="g"></div>
+<div class = "container-fluid" >
+
+    <div class="row">
+        <div class="col-sm-6" id="left_column">
+            <!--div id="plot-container"-->
+                <div class="col-sm-12" id="canvas"></div>
+            <!--/div-->
+
+        </div>
+        <div class="col-sm-6" id="right-column">
+            <div id="app"></div>
+            <div id='root'></div>
+        </div>
+    </div>
+</div>
+
+<!--script src="https://fb.me/react-15.0.1.js"></script>
+<script src="https://fb.me/react-dom-15.0.1.js"></script-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -30,324 +67,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.css">
 
 
-<script type="text/babel">
-    class CoordForm extends React.Component {
-        constructor(props) {
-            super(props);
-            this.state = {x: "", y: "", r: ""};
 
-            this.onChange = this.onChange.bind(this);
-            this.handleSubmit = this.handleSubmit.bind(this);
-        }
-
-        // Изменение x, на всякий пожарный для всех надо сделать
-        onChange(e) {
-            var val = e.target.value;
-            this.setState({x: val});
-        }
-
-        handleSubmit(e) {
-            e.preventDefault();
-            alert("Y: " + this.state.y);
-        }
-
-        render() {
-            return (
-                    <form method="post" action="" onSubmit={this.handleSubmit}>
-                        <div class="form-group" id="Coord">
-                            <div class="row form-check col-sm-10">
-                                <p><b>Введите X:</b></p>
-                                <input type="checkbox" name="x" value="-4" id="x1"/><label class="form-check-label"
-                                                                                          for="x1">
-                                    -4
-                                </label>
-                                    <input type="checkbox" name="x" value="-3" id="x2"/><label class="form-check-label"
-                                                                                              for="x2">
-                                        -3
-                                    </label>
-                                        <input type="checkbox" name="x" value="-2" id="x3"/><label
-                                                class="form-check-label" for="x3">
-                                            -2
-                                        </label>
-                                            <input type="checkbox" name="x" value="-1" id="x4"/><label
-                                                    class="form-check-label" for="x4">
-                                                -1
-                                            </label>
-                                                <input type="checkbox" name="x" value="0" id="x5"/><label
-                                                        class="form-check-label" for="x5">
-                                                    0
-                                                </label>
-                                                    <input type="checkbox" name="x" value="1" id="x6"/><label
-                                                            class="form-check-label" for="x6">
-                                                        1
-                                                    </label>
-                                                        <input type="checkbox" name="x" value="2" id="x7"/><label
-                                                                class="form-check-label" for="x7">
-                                                            2
-                                                        </label>
-                                                            <input type="checkbox" name="x" value="3" id="x8"/><label
-                                                                    class="form-check-label" for="x8">
-                                                                3
-                                                            </label>
-                                                                <input type="checkbox" name="x" value="4" id="x9"/><label
-                                                                        class="form-check-label" for="x9">
-                                                                    4
-                                                                </label>
-                            </div>
-                            <br/>
-                            <div class="row">
-                                <div class="col-sm-10">
-                                    <label for="inputY" value={this.state.y}  class="col-sm-2 col-form-label">Введите Y:</label>
-                                    <input type="text" class="form-control" id="inputY" placeholder="Введите Y"/>
-                                </div>
-                            </div>
-                            <br/>
-                            <div class="row form-check col-sm-10">
-                                <p><b>Введите R:</b></p>
-                                <input type="checkbox" name="r" value="-4" id="r1"/><label class="form-check-label"
-                                                                                          for="r1">
-                                    -4
-                                </label>
-                                    <input type="checkbox" name="r" value="-3" id="r2"/><label class="form-check-label"
-                                                                                              for="r2">
-                                        -3
-                                    </label>
-                                        <input type="checkbox" name="r" value="-2" id="r3"/><label
-                                                class="form-check-label" for="r3">
-                                            -2
-                                        </label>
-                                            <input type="checkbox" name="r" value="-1" id="r4"/><label
-                                                    class="form-check-label" for="r4">
-                                                -1
-                                            </label>
-                                                <input type="checkbox" name="r" value="0" id="r5"/><label
-                                                        class="form-check-label" for="r5">
-                                                    0
-                                                </label>
-                                                    <input type="checkbox" name="r" value="1" id="r6"/><label
-                                                            class="form-check-label" for="r6">
-                                                        1
-                                                    </label>
-                                                        <input type="checkbox" name="r" value="2" id="r7"/><label
-                                                                class="form-check-label" for="r7">
-                                                            2
-                                                        </label>
-                                                            <input type="checkbox" name="r" value="3" id="r8"/><label
-                                                                    class="form-check-label" for="r8">
-                                                                3
-                                                            </label>
-                                                                <input type="checkbox" name="r" value="4" id="r9"/><label
-                                                                        class="form-check-label" for="r9">
-                                                                    4
-                                                                </label>
-
-                            <br/>
-                            <p><input type="submit" class="btn btn-success" value="Отправить"/></p>
-                        </div>
-                        </div>
-                    </form>
-        );
-        }
-        }
-
-        class CanvasComponent extends React.Component {
-            componentDidMount() {
-            this.updateCanvas();
-        }
-
-            updateCanvas() {
-            const context = this.refs.canvas.getContext('2d');
-            context.fillRect(150, 150, 65, 130);
-            context.clearRect(0, 0, canvas.width, canvas.height);
-
-            //прямоугольник
-            context.beginPath();
-            context.moveTo(150, 150);
-            context.rect(85, 150, 65, 130);
-            context.closePath();
-            context.strokeStyle = "blue";
-            context.fillStyle = "blue";
-            context.strokeStyle = "#3d7bb0";
-            context.fillStyle = "#3d7bb0";
-            context.fill();
-            context.stroke();
-
-            // сектор
-            context.beginPath();
-            // context.moveTo(150, 20);
-            context.moveTo(150, 150);
-            context.arc(150, 150, 130, 1.5 * Math.PI, 0 * Math.PI);
-            context.closePath();
-            context.strokeStyle = "blue";
-            context.fillStyle = "blue";
-            context.strokeStyle = "#3d7bb0";
-            context.fillStyle = "#3d7bb0";
-            context.fill();
-            context.stroke();
-
-            //треугольник
-            context.beginPath();
-            context.moveTo(150, 280);
-            context.lineTo(280, 150);
-            context.lineTo(150, 150);
-            context.lineTo(150, 280);
-            context.closePath();
-            context.strokeStyle = "blue";
-            context.fillStyle = "blue";
-            context.strokeStyle = "#3d7bb0";
-            context.fillStyle = "#3d7bb0";
-            context.fill();
-            context.stroke();
-
-            context.strokeStyle = "black";
-            context.fillStyle = "black";
-            //отрисовка осей
-            context.beginPath();
-            context.font = "10px Verdana";
-            context.moveTo(150, 0);
-            context.lineTo(150, 300);
-            context.moveTo(150, 0);
-            context.lineTo(145, 15);
-            context.moveTo(150, 0);
-            context.lineTo(155, 15);
-            context.fillText("Y", 160, 10);
-            context.moveTo(0, 150);
-            context.lineTo(300, 150);
-            context.moveTo(300, 150);
-            context.lineTo(285, 145);
-            context.moveTo(300, 150);
-            context.lineTo(285, 155);
-            context.fillText("X", 290, 135);
-            var r = 10;
-            // деления X
-            context.moveTo(145, 20);
-            context.lineTo(155, 20);
-            context.fillText(r, 160, 20);
-            context.moveTo(145, 85);
-            context.lineTo(155, 85);
-            context.fillText((r / 2), 160, 78);
-            context.moveTo(145, 215);
-            context.lineTo(155, 215);
-            context.fillText(-(r / 2), 160, 215);
-            context.moveTo(145, 280);
-            context.lineTo(155, 280);
-            context.fillText(-r, 160, 280);
-            // деления Y
-            context.moveTo(20, 145);
-            context.lineTo(20, 155);
-            context.fillText(-r, 20, 170);
-            context.moveTo(85, 145);
-            context.lineTo(85, 155);
-            context.fillText(-(r / 2), 70, 170);
-            context.moveTo(215, 145);
-            context.lineTo(215, 155);
-            context.fillText((r / 2), 215, 170);
-            context.moveTo(280, 145);
-            context.lineTo(280, 155);
-            context.fillText(r, 280, 170);
-
-            context.closePath();
-            context.strokeStyle = "black";
-            context.fillStyle = "black";
-            context.stroke();
-        }
-
-            render() {
-            return (
-            <canvas ref="canvas" width={300} height={300}/>
-            );
-        }
-        }
-
-        var Point = React.createClass({
-            getInitialState: function () {
-            return {display: true};
-        },
-            handleDelete() {
-            var self = this;
-            $.ajax({
-            url: self.props.point._links.self.href,
-            type: 'DELETE',
-            success: function (result) {
-            self.setState({display: false});
-        },
-            error: function (xhr, ajaxOptions, thrownError) {
-            toastr.error(xhr.responseJSON.message);
-        }
-        });
-        },
-            render: function () {
-            if (this.state.display == false) return null;
-            else
-            return (
-            <tr>
-            <td>{this.props.point.x}</td>
-            <td>{this.props.point.y}</td>
-            <td>{this.props.point.r}</td>
-            <td>{this.props.point.status}</td>
-            <td>
-            <button className="btn btn-info" onClick={this.handleDelete}>Delete</button>
-            </td>
-            </tr>);
-        }
-        });
-        var PointsTable = React.createClass({
-            render: function () {
-            var rows = [];
-            this.props.points.forEach(function (point) {
-            rows.push(<Point point={point}/>);
-        });
-            return (
-            <table className="col-sm-offset-1 col-sm-10 col-lg-10 col-xs-12 table table-striped">
-            <thead>
-            <tr>
-            <th>X</th>
-            <th>Y</th>
-            <th>R</th>
-            <th>STATUS</th>
-            <th>Удаление</th>
-            </tr>
-            </thead>
-            <tbody>{rows}</tbody>
-            </table>
-            );
-        }
-        });
-        var App = React.createClass({
-            loadPointsFromServer: function () {
-            var self = this;
-            $.ajax({
-            url: "http://localhost:8080/api/points"
-        }).then(function (data) {
-            self.setState({points: data._embedded.points});
-        });
-        },
-
-            getInitialState: function () {
-            return {points: []};
-        },
-
-            componentDidMount: function () {
-            this.loadPointsFromServer();
-        },
-
-            render() {
-            return ( <PointsTable points={this.state.points}/> );
-        }
-        });
-    ReactDOM.render(
-            <CoordForm />,
-        document.getElementById("app")
-    )
-        ReactDOM.render(
-            <CanvasComponent/>
-        , document.getElementById('canvas'));
-        ReactDOM.render(
-            <App/>
-        , document.getElementById('root'));
-
-</script>
-<script src="built/bundle.js"></script>
+<script src="./public/Main-bundle.js"></script>
 
 </body>
 </html>

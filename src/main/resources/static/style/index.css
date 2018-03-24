@@ -1,0 +1,61 @@
+#my-plot{
+
+    background: lightgrey;
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+}
+
+#plot-container{
+    margin-top: 5%;
+    background-color: red;
+    position: relative;
+    width: 100%;
+    padding-top: 70%; /* 1:1 Aspect Ratio */
+}
+#left_column{
+    position: relative;
+}
+body {
+    padding-top: 50px;
+}
+
+body, input {
+    font-family: "Avenir Next", Avenir, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+}
+#log-out{
+    color: white;
+}
+
+
+.submit{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width:100px;
+    height:40px;
+    background-color:#111111;
+    border:2px solid #FFFFFF;
+    border-radius:10px;
+    color:#FFFFFF;
+    font-size:17px;
+    cursor:pointer !important;
+    outline:none;
+}
+
+.submit:hover{
+    background-color:#222222;
+}
+
+
+
+
+.form-container{
+    margin-top: 5%;
+}
