@@ -54,7 +54,7 @@ class SignInForm extends React.Component{
     render(){
         return (
             <div id="return_form">
-                <form name="sign_in_form" method="post" action="sign_in" onSubmit={this.handleSubmit}>
+                <form name="sign_in_form" method="post" action="./go" onSubmit={this.handleSubmit}>
                     <h1>Sign in</h1><br/>
                     <span className="input"></span>
                     <input name="username" placeholder="Username" value={this.state.username} onChange={this.onUsernameChange} required></input>
