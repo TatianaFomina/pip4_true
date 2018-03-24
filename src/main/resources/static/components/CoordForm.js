@@ -60,7 +60,7 @@ class CoordForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         if (this.state.xIsValid === true && this.state.yIsValid === true && this.state.rIsValid === true) {
-            const data = new FormData(event.target);
+            const data = new FormData(e.target);
             alert(data);
             alert("Y: " + this.state.y + " X: " + this.state.x + " R: " + this.state.r);
         }
