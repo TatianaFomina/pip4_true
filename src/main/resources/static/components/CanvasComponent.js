@@ -9,7 +9,7 @@ class CanvasComponent extends React.Component {
 
     updateCanvas() {
         const context = this.refs.canvas.getContext('2d');
-        context.fillRect(150, 150, 65, 130);
+        //context.fillRect(150, 150, 65, 130);
         context.clearRect(0, 0, canvas.width, canvas.height);
 
         //прямоугольник
@@ -111,6 +111,4 @@ class CanvasComponent extends React.Component {
     }
 }
 
-ReactDOM.render(
-    <CanvasComponent/>
-    , document.getElementById('canvas'));
+ReactDOM.render(<CanvasComponent/>, document.getElementById('canvas'));
