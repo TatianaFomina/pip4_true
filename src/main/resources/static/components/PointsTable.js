@@ -49,7 +49,7 @@ var PointsTable = createReactClass({
                     <th>Y</th>
                     <th>R</th>
                     <th>STATUS</th>
-                    <th>Удаление</th>
+                    <th>Delete</th>
                 </tr>
                 </thead>
                 <tbody>{rows}</tbody>
