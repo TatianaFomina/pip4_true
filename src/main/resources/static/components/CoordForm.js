@@ -29,7 +29,7 @@ class CoordForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        alert("Y: " + this.state.y);
+        alert("Y: " + this.state.y + "X: " + this.state.x + "R: " + this.state.r);
     }
 
     render() {
