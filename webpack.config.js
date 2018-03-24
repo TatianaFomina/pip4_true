@@ -5,6 +5,7 @@ module.exports = {
     devtool: 'eval-source-map',
     entry: {
         "SignUp": "./src/main/resources/static/components/SignUpForm.js",
+        "SignIn": "./src/main/resources/static/components/SignInForm.js",
         "Main": ["./src/main/resources/static/components/CoordForm.js",
             "./src/main/resources/static/components/CanvasComponent.js",
             "./src/main/resources/static/components/PointsTable.js"]
