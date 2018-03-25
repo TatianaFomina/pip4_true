@@ -24,5 +24,15 @@ public class HomeController {
         return "index.html";
     }
 
+    @RequestMapping(value = "/success")
+    public String success() {
+        return "success.html";
+    }
+
+//    @RequestMapping(value = ".")
+//    public String index_redirect() {
+//        return "redirect:/";
+//    }
+
 
 }
