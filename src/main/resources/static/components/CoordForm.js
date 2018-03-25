@@ -2,6 +2,8 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var createReactClass = require('create-react-class');
 import App from './PointsTable';
+import PointsTable from './PointsTable';
+import Point from './PointsTable';
 
 class CoordForm extends React.Component {
     constructor(props) {
@@ -70,15 +72,32 @@ class CoordForm extends React.Component {
             var x = this.state.x;
             var y = this.state.y;
             var r = this.state.r;
-            var body = "x="+x+"&y="+y+"&r="+r;
+            var body = "x=" + x + "&y=" + y + "&r=" + r;
+            var table = Point;
             http_request.send(body);
             http_request.onreadystatechange = function () {
-                if(http_request.readyState === XMLHttpRequest.DONE && http_request.status === 200) {
-                    if (http_request.responseText === "true"){
-                        alert("Попадание");
+                if (http_request.readyState === XMLHttpRequest.DONE && http_request.status === 200) {
+                    if (http_request.responseText === "true") {
+                        alert("Попаданиеf");
+                        $("#table-point").append("<tr>" +
+                            "<td>" + x + "</td>" +
+                            "<td>" + y + "</td>" +
+                            "<td>" + r + "</td>" +
+                            "<td>OK</td>" +
+                            "<td>" +
+                            "</td>" +
+                            "</tr>");
                     }
                     else {
-                        alert("Не попал");
+                        alert("Не попалf");
+                        $("#table-point").append("<tr>" +
+                            "<td>" + x + "</td>" +
+                            "<td>" + y + "</td>" +
+                            "<td>" + r + "</td>" +
+                            "<td>NOT</td>" +
+                            "<td>" +
+                            "</td>" +
+                            "</tr>");
                     }
                 }
             }.bind(this);
