@@ -13,6 +13,10 @@ var Point = createReactClass({
             type: 'DELETE',
             success: function (result) {
                 self.setState({display: false});
+                store.dispatch({
+                    type: 'POINT_LIST_SUCCESS',
+                    points: response.data
+                });
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 toastr.error(xhr.responseJSON.message);
@@ -21,17 +25,18 @@ var Point = createReactClass({
     },
     render: function () {
         if (this.state.display == false) return null;
-        else
+        else {
             return (
                 <tr>
                     <td>{this.props.point.x}</td>
                     <td>{this.props.point.y}</td>
                     <td>{this.props.point.r}</td>
-                    <td>{this.props.point.status}</td>
+                    <td>{this.props.point.status ? 'OK' : 'NOT'}</td>
                     <td>
                         <button className="btn btn-info" onClick={this.handleDelete}>Delete</button>
                     </td>
                 </tr>);
+        }
     }
 });
 
@@ -80,6 +85,8 @@ var App = createReactClass({
         return ( <PointsTable points={this.state.points}/> );
     }
 });
+
+
 ReactDOM.render(
     <App/>
     , document.getElementById('root'));
