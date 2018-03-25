@@ -113,7 +113,6 @@ class CoordForm extends React.Component {
         var yColor = this.state.yIsValid === true ? "#9DF69C" : "#F6A19C";
         return (
             <div className="row form-container">
-                <CanvasComponent r={ this.state.r } />
                 <div className="col-sm-8 col-sm-offset-2">
                     <form method="post" action="" onSubmit={this.handleSubmit}>
                         <h3>Enter point coordinates</h3>
