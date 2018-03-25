@@ -16,9 +16,26 @@ public class AuthNavigationController {
     @Autowired
     private HttpSession httpSession;
 
+    @RequestMapping(value = ".")
+    public String index_redirect() {
+        return "redirect:./";
+    }
+
     @RequestMapping(value = "/signup")
     public String signup() {
         return "registration.html";
+    }
+
+//    @RequestMapping(value = "/register")
+//    public String register() {
+//        return "signin.html";
+//    }
+
+    @RequestMapping(value = "/go_out")
+    public String goOut() {
+        if ((httpSession.getAttribute("username") != null) || !httpSession.getAttribute("username").equals(""))
+            httpSession.removeAttribute("username");
+        return "redirect:./signin";
     }
 
     @RequestMapping(value = "/signin")

@@ -68,6 +68,22 @@ class SignUpForm extends React.Component{
             alert("Such username already exists");
         }
 
+        // http_request.open('POST', "./register", true);
+        // http_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        // http_request.send("username="+this.state.login + "&password=" + this.state.password1);
+        // http_request.onreadystatechange = function () {
+        //     if(http_request.readyState === XMLHttpRequest.DONE && http_request.status === 200) {
+        //         if (http_request.responseText === "true"){
+        //
+        //             this.setState({login: val, usrNameValid: false});
+        //             alert("Such username already exists");
+        //         }
+        //         else {
+        //             this.setState({login: val, usrNameValid: true});
+        //
+        //         }
+        //     }
+        // }.bind(this);
     }
     render(){
         var password2Id = this.state.p2Valid===true?"password2":"p2Invalid";

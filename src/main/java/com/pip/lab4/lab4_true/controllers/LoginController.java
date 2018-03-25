@@ -7,6 +7,8 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -22,8 +24,9 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/register")
-    public void register(@RequestParam("username") String username, @RequestParam("password") String password){
+    public void register(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletResponse response) throws IOException {
         repository.save(new UserAccount(username, String.valueOf(password.hashCode())));
+        response.sendRedirect("/success");
     }
 
     @RequestMapping(value = "/check_username")
