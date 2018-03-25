@@ -3,12 +3,95 @@ var ReactDOM = require('react-dom');
 var createReactClass = require('create-react-class');
 
 class CanvasComponent extends React.Component {
-    componentDidMount() {
-        this.updateCanvas();
+    constructor(props) {
+        super(props);
+        this.state = {r: 10, context: null};
+        this.handleClick = this.handleClick.bind(this);
     }
 
-    updateCanvas() {
+    componentDidMount(r = 10) {
+        this.updateCanvas(r);
+    }
+
+    _onMouseMove(e) {
+        this.setState({ x: e.screenX, y: e.screenY });
+    }
+
+    // Изменение x, проверка на пустоту, валидация
+    onRCharge(r) {
+        this.setState({r: r});
+        this.updateCanvas(r);
+    }
+
+    handleClick(e) {
+        e.preventDefault();
+        var context = this.state.context;
+        var r = this.state.r;
+        var x = (e.screenX - 215) / r;
+        var ex = e.screenX;
+        var ey = e.screenY;
+        var y = (-(e.screenY - 280)) / r;
+        if ((x > 0) && (y > 0)){
+            x = x + 0.5*r/10;
+        }
+        if ((x < 0) && (y < 0)){
+            x = x + 2.5*r/10;
+        }
+        //alert(e.screenX + " " + e.screenY + " ");
+
+        var http_request = new XMLHttpRequest();
+        if (window.XMLHttpRequest) {
+            http_request = new XMLHttpRequest();
+        }
+        http_request.open('POST', "./addPoint", true);
+        http_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        var body = "x=" + x + "&y=" + y + "&r=" + r;
+        http_request.send(body);
+        http_request.onreadystatechange = function () {
+            if (http_request.readyState === XMLHttpRequest.DONE && http_request.status === 200) {
+                if (http_request.responseText === "true") {
+                    alert("Попадание");
+                    context.beginPath();
+                    context.arc(150 + x * (130/ r), 150 - y * (130/ r), 4, 0, 2 * Math.PI);
+                    context.fillStyle = 'green';
+                    context.fill();
+                    context.lineWidth = 1;
+                    context.strokeStyle = '#003300';
+                    context.stroke()
+                    $("#table-point").append("<tr>" +
+                        "<td>" + x + "</td>" +
+                        "<td>" + y + "</td>" +
+                        "<td>" + r + "</td>" +
+                        "<td>OK</td>" +
+                        "<td>" +
+                        "</td>" +
+                        "</tr>");
+                }
+                else {
+                     alert("Не попал");
+                     context.beginPath();
+                     context.arc(150 + x* (130/ r), 150 - y* (130/ r), 4, 0, 2 * Math.PI);
+                     context.fillStyle = 'red';
+                     context.fill();
+                     context.lineWidth = 1;
+                     context.strokeStyle = '#003300';
+                     context.stroke();
+                    $("#table-point").append("<tr>" +
+                        "<td>" + x + "</td>" +
+                        "<td>" + y + "</td>" +
+                        "<td>" + r + "</td>" +
+                        "<td>NOT</td>" +
+                        "<td>" +
+                        "</td>" +
+                        "</tr>");
+                }
+            }
+        }.bind(this);
+    }
+
+    updateCanvas(r) {
         const context = this.refs.canvas.getContext('2d');
+        this.setState({r: r, context: context});
         //context.fillRect(150, 150, 65, 130);
         context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -70,7 +153,7 @@ class CanvasComponent extends React.Component {
         context.moveTo(300, 150);
         context.lineTo(285, 155);
         context.fillText("X", 290, 135);
-        var r = 10;
+        //var r = 10;
         // деления X
         context.moveTo(145, 20);
         context.lineTo(155, 20);
@@ -106,7 +189,7 @@ class CanvasComponent extends React.Component {
 
     render() {
         return (
-            <canvas ref="canvas" width={300} height={300}/>
+            <canvas ref="canvas" onMouseMove={this._onMouseMove.bind(this)} width={300} height={300} onClick={this.handleClick}/>
         );
     }
 }

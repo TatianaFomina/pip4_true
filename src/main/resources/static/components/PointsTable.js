@@ -32,9 +32,6 @@ var Point = createReactClass({
                     <td>{this.props.point.y}</td>
                     <td>{this.props.point.r}</td>
                     <td>{this.props.point.status ? 'OK' : 'NOT'}</td>
-                    <td>
-                        <button className="btn btn-info" onClick={this.handleDelete}>Delete</button>
-                    </td>
                 </tr>);
         }
     }
@@ -54,10 +51,9 @@ var PointsTable = createReactClass({
                     <th>Y</th>
                     <th>R</th>
                     <th>STATUS</th>
-                    <th>Delete</th>
                 </tr>
                 </thead>
-                <tbody>{rows}</tbody>
+                <tbody id='table-point' >{rows}</tbody>
             </table>
         );
     }
@@ -79,6 +75,10 @@ var App = createReactClass({
 
     componentDidMount: function () {
         this.loadPointsFromServer();
+    },
+
+    updateData(config) {
+        this.setState(config);
     },
 
     render() {
