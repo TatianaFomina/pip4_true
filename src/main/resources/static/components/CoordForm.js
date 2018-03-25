@@ -78,7 +78,7 @@ class CoordForm extends React.Component {
             http_request.onreadystatechange = function () {
                 if (http_request.readyState === XMLHttpRequest.DONE && http_request.status === 200) {
                     if (http_request.responseText === "true") {
-                        alert("Попаданиеf");
+                        alert("Попадание");
                         $("#table-point").append("<tr>" +
                             "<td>" + x + "</td>" +
                             "<td>" + y + "</td>" +
@@ -89,7 +89,7 @@ class CoordForm extends React.Component {
                             "</tr>");
                     }
                     else {
-                        alert("Не попалf");
+                        alert("Не попал");
                         $("#table-point").append("<tr>" +
                             "<td>" + x + "</td>" +
                             "<td>" + y + "</td>" +
