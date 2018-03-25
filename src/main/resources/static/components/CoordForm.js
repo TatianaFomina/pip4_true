@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var createReactClass = require('create-react-class');
+import App from './PointsTable';
 
 class CoordForm extends React.Component {
     constructor(props) {
@@ -74,10 +75,10 @@ class CoordForm extends React.Component {
             http_request.onreadystatechange = function () {
                 if(http_request.readyState === XMLHttpRequest.DONE && http_request.status === 200) {
                     if (http_request.responseText === "true"){
-                        alert("Ok");
+                        alert("Попадание");
                     }
                     else {
-                        alert("Not ok");
+                        alert("Не попал");
                     }
                 }
             }.bind(this);

@@ -5,6 +5,7 @@
     "build": "webpack"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "classnames": "^2.2.5",
     "create-react-class": "^15.6.3",
     "immutable": "^3.8.2",
