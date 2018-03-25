@@ -3,11 +3,15 @@ var ReactDOM = require('react-dom');
 var createReactClass = require('create-react-class');
 
 class CanvasComponent extends React.Component {
-    componentDidMount() {
-        this.updateCanvas();
+    componentDidMount(r = 10) {
+        this.updateCanvas(r);
     }
 
-    updateCanvas() {
+    handleClick() {
+        alert('sdsd');
+    }
+
+    updateCanvas(r) {
         const context = this.refs.canvas.getContext('2d');
         //context.fillRect(150, 150, 65, 130);
         context.clearRect(0, 0, canvas.width, canvas.height);
@@ -70,7 +74,7 @@ class CanvasComponent extends React.Component {
         context.moveTo(300, 150);
         context.lineTo(285, 155);
         context.fillText("X", 290, 135);
-        var r = 10;
+        //var r = 10;
         // деления X
         context.moveTo(145, 20);
         context.lineTo(155, 20);
@@ -106,7 +110,7 @@ class CanvasComponent extends React.Component {
 
     render() {
         return (
-            <canvas ref="canvas" width={300} height={300}/>
+            <canvas ref="canvas" width={300} height={300} onClick={this.handleClick}/>
         );
     }
 }
