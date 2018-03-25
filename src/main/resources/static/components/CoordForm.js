@@ -60,9 +60,29 @@ class CoordForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         if (this.state.xIsValid === true && this.state.yIsValid === true && this.state.rIsValid === true) {
-            const data = new FormData(e.target);
-            alert(data);
-            alert("Y: " + this.state.y + " X: " + this.state.x + " R: " + this.state.r);
+            var http_request = new XMLHttpRequest();
+            if (window.XMLHttpRequest) {
+                http_request = new XMLHttpRequest();
+            }
+            http_request.open('POST', "./addPoint", true);
+            http_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            var x = this.state.x;
+            var y = this.state.y;
+            var r = this.state.r;
+            var body = "x="+x+"&y="+y+"&r="+r;
+            http_request.send(body);
+            http_request.onreadystatechange = function () {
+                if(http_request.readyState === XMLHttpRequest.DONE && http_request.status === 200) {
+                    if (http_request.responseText === "true"){
+                        alert("Ok");
+                    }
+                    else {
+                        alert("Not ok");
+                    }
+                }
+            }.bind(this);
+            //alert(data);
+            //alert("Y: " + this.state.y + " X: " + this.state.x + " R: " + this.state.r);
         }
         // alert("Y: " + this.state.y + " X: " + this.state.x + " R: " + this.state.r);
     }
