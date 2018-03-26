@@ -309,9 +309,9 @@ class CoordForm extends React.Component {
 }
 
 
-ReactDOM.render(
-    <CoordForm x="-4" r="-4"/>,
-    document.getElementById("app")
-);
+// ReactDOM.render(
+//     <CoordForm x="-4" r="-4"/>,
+//     document.getElementById("app")
+// );
 
-
+export default CoordForm;

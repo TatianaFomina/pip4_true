@@ -91,6 +91,7 @@ var App = createReactClass({
 });
 
 
-ReactDOM.render(
-    <App/>
-    , document.getElementById('root'));
+// ReactDOM.render(
+//     <App/>
+//     , document.getElementById('root'));
+export default PointsTable;

@@ -194,4 +194,6 @@ class CanvasComponent extends React.Component {
     }
 }
 
-ReactDOM.render(<CanvasComponent/>, document.getElementById('canvas'));
+// ReactDOM.render(<CanvasComponent/>, document.getElementById('canvas'));
+
+export default CanvasComponent;
