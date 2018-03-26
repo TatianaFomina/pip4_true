@@ -9,7 +9,7 @@ class Container extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {r: "-4"};
+        this.state = {r: "10"};
         this.updateShared = this.updateShared.bind(this);
     }
     // getInitialState: function(){

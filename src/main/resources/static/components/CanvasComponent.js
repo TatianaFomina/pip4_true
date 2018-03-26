@@ -19,15 +19,58 @@ class CanvasComponent extends React.Component {
         });
         var r = nextProps.r;
         //this.updateCanvas(nextProps.r);
-        // var context = this.state.context;
+        var context = this.state.context;
         // context.closePath();
         // context.strokeStyle = "black";
         // context.fillStyle = "black";
         // context.stroke();
         //render();
        // this.forceUpdate()
-        alert("Update!");
-        var context = this.state.context;
+        //alert("Update!");
+        //context.fillRect(150, 150, 65, 130);
+        context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+        //прямоугольник
+        context.beginPath();
+        context.moveTo(150, 150);
+        context.rect(85, 150, 65, 130);
+        context.closePath();
+        context.strokeStyle = "blue";
+        context.fillStyle = "blue";
+        context.strokeStyle = "#3d7bb0";
+        context.fillStyle = "#3d7bb0";
+        context.fill();
+        context.stroke();
+
+        // сектор
+        context.beginPath();
+        // context.moveTo(150, 20);
+        context.moveTo(150, 150);
+        context.arc(150, 150, 130, 1.5 * Math.PI, 0 * Math.PI);
+        context.closePath();
+        context.strokeStyle = "blue";
+        context.fillStyle = "blue";
+        context.strokeStyle = "#3d7bb0";
+        context.fillStyle = "#3d7bb0";
+        context.fill();
+        context.stroke();
+
+        //треугольник
+        context.beginPath();
+        context.moveTo(150, 280);
+        context.lineTo(280, 150);
+        context.lineTo(150, 150);
+        context.lineTo(150, 280);
+        context.closePath();
+        context.strokeStyle = "blue";
+        context.fillStyle = "blue";
+        context.strokeStyle = "#3d7bb0";
+        context.fillStyle = "#3d7bb0";
+        context.fill();
+        context.stroke();
+
+        context.strokeStyle = "black";
+        context.fillStyle = "black";
+        //отрисовка осей
         context.beginPath();
         context.font = "10px Verdana";
         context.moveTo(150, 0);
@@ -71,6 +114,7 @@ class CanvasComponent extends React.Component {
         context.moveTo(280, 145);
         context.lineTo(280, 155);
         context.fillText(r, 280, 170);
+
         context.closePath();
         context.strokeStyle = "black";
         context.fillStyle = "black";
@@ -159,7 +203,7 @@ class CanvasComponent extends React.Component {
         const context = this.refs.canvas.getContext('2d');
         this.setState({r: r, context: context});
         //context.fillRect(150, 150, 65, 130);
-        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 
         //прямоугольник
         context.beginPath();

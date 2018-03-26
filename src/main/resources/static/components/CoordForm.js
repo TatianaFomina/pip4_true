@@ -86,7 +86,6 @@ class CoordForm extends React.Component {
         }
         // var valid = this.validateX(val);
 
-
     }
 
     handleRChange () {
