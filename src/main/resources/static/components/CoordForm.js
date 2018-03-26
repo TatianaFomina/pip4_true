@@ -149,6 +149,8 @@ class CoordForm extends React.Component {
                     r4Checked: false, r5Checked: false, r6Checked: false, r7Checked: false, r8Checked: false, r9Checked: true})
                 break;
         }
+        //var canvas = CanvasComponent;
+        CanvasComponent.state.onRChange(val);
         //this.setState({r: val, rIsValid: valid});
         //this.handleRChange();
         //var r = this.state.r;
