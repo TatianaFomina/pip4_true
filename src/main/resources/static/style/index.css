@@ -73,3 +73,20 @@ body, input {
 .form-check-label{
     margin-right: 20px;
 }
+
+#table-wrapper {
+    position:relative;
+    width: 75%;
+    margin-left: 12%;
+}
+#table-scroll {
+    padding: 0;
+    height:150px;
+    overflow:auto;
+    margin-top:20px;
+}
+#table-wrapper table {
+    width:90%;
+
+}
+

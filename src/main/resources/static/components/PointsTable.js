@@ -44,17 +44,21 @@ var PointsTable = createReactClass({
             rows.push(<Point point={point}/>);
         });
         return (
-            <table className="col-sm-offset-1 col-sm-10 col-lg-10 col-xs-12 table table-striped">
-                <thead>
-                <tr>
-                    <th>X</th>
-                    <th>Y</th>
-                    <th>R</th>
-                    <th>STATUS</th>
-                </tr>
-                </thead>
-                <tbody id='table-point' >{rows}</tbody>
-            </table>
+            <div id="table-wrapper">
+                <div id="table-scroll">
+                    <table className="col-sm-offset-1 col-sm-10 col-lg-10 col-xs-12 table table-striped">
+                        <thead>
+                        <tr>
+                            <th>X</th>
+                            <th>Y</th>
+                            <th>R</th>
+                            <th>STATUS</th>
+                        </tr>
+                        </thead>
+                        <tbody id='table-point'>{rows}</tbody>
+                    </table>
+                </div>
+            </div>
         );
     }
 });
