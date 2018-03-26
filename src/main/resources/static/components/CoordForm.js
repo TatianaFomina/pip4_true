@@ -20,7 +20,9 @@ class CoordForm extends React.Component {
 
         this.state = {x: x, y: y, r: r, yIsEmpty: true, yIsValid: yIsValid, rIsValid: rIsValid,
             xIsValid: xIsValid, x1Checked: true, x2Checked: false, x3Checked: false, x4Checked: false,
-            x5Checked: false, x6Checked: false, x7Checked: false, x8Checked: false, x9Checked: false};
+            x5Checked: false, x6Checked: false, x7Checked: false, x8Checked: false, x9Checked: false,
+            r1Checked: true, r2Checked: false, r3Checked: false, r4Checked: false,
+            r5Checked: false, r6Checked: false, r7Checked: false, r8Checked: false, r9Checked: false};
         this.onXChange = this.onXChange.bind(this);
         this.onYChange = this.onYChange.bind(this);
         this.onRChange = this.onRChange.bind(this);
@@ -101,15 +103,54 @@ class CoordForm extends React.Component {
     onRChange(e) {
         var canvas = CanvasComponent;
         var val = e.target.value;
+        var id = e.target.id;
         var valid = this.validateX(val);
-        this.setState({r: val, rIsValid: valid});
+        switch (id){
+            case 'r1' :
+                this.setState({r: val, rIsValid: valid, r1Checked: true, r2Checked: false, r3Checked: false,
+                    r4Checked: false, r5Checked: false, r6Checked: false, r7Checked: false, r8Checked: false, r9Checked: false});
+                break;
+            case 'r2' :
+                this.setState({r: val, rIsValid: valid, r1Checked: false, r2Checked: true, r3Checked: false,
+                    r4Checked: false, r5Checked: false, r6Checked: false, r7Checked: false, r8Checked: false, r9Checked: false})
+                break;
+            case 'r3' :
+                this.setState({r: val, rIsValid: valid, r1Checked: false, r2Checked: false, r3Checked: true,
+                    r4Checked: false, r5Checked: false, r6Checked: false, r7Checked: false, r8Checked: false, r9Checked: false})
+                break;
+            case 'r4' :
+                this.setState({r: val, rIsValid: valid, r1Checked: false, r2Checked: false, r3Checked: false,
+                    r4Checked: true, r5Checked: false, r6Checked: false, r7Checked: false, r8Checked: false, r9Checked: false})
+                break;
+            case 'r5' :
+                this.setState({r: val, rIsValid: valid, r1Checked: false, r2Checked: false, r3Checked: false,
+                    r4Checked: false, r5Checked: true, r6Checked: false, r7Checked: false, r8Checked: false, r9Checked: false})
+                break;
+            case 'r6' :
+                this.setState({r: val, rIsValid: valid, r1Checked: false, r2Checked: false, r3Checked: false,
+                    r4Checked: false, r5Checked: false, r6Checked: true, r7Checked: false, r8Checked: false, r9Checked: false})
+                break;
+            case 'r7' :
+                this.setState({r: val, rIsValid: valid, r1Checked: false, r2Checked: false, r3Checked: false,
+                    r4Checked: false, r5Checked: false, r6Checked: false, r7Checked: true, r8Checked: false, r9Checked: false})
+                break;
+            case 'r8' :
+                this.setState({r: val, rIsValid: valid, r1Checked: false, r2Checked: false, r3Checked: false,
+                    r4Checked: false, r5Checked: false, r6Checked: false, r7Checked: false, r8Checked: true, r9Checked: false})
+                break;
+            case 'r9' :
+                this.setState({r: val, rIsValid: valid, r1Checked: false, r2Checked: false, r3Checked: false,
+                    r4Checked: false, r5Checked: false, r6Checked: false, r7Checked: false, r8Checked: false, r9Checked: true})
+                break;
+        }
+        //this.setState({r: val, rIsValid: valid});
     }
 
     handleSubmit(e) {
         e.preventDefault();
         // if (!this.state.yIsValid)
         //     alert("y value must be between -3 and 3");
-        if (/*this.state.xIsValid === true && */this.state.yIsValid === true && this.state.rIsValid === true) {
+        if (/*this.state.xIsValid === true && */this.state.yIsValid === true/* && this.state.rIsValid === true*/) {
             var http_request = new XMLHttpRequest();
             if (window.XMLHttpRequest) {
                 http_request = new XMLHttpRequest();
@@ -215,41 +256,41 @@ class CoordForm extends React.Component {
                             <br/>
                             <div className=" form-check ">
                                 <p><b>Radius:</b></p>
-                                <input type="checkbox" name="r" value="-4" id="r1" onChange={this.onRChange}/><label
+                                <input type="checkbox" name="r" value="-4" id="r1"  checked={this.state.r1Checked} onChange={this.onRChange}/><label
                                 className="form-check-label"
                                 htmlFor="r1">
                                 -4
                             </label>
-                                <input type="checkbox" name="r" value="-3" id="r2" onChange={this.onRChange}/><label
+                                <input type="checkbox" name="r" value="-3" id="r2" checked={this.state.r2Checked} onChange={this.onRChange}/><label
                                 className="form-check-label"
                                 htmlFor="r2">
                                 -3
                             </label>
-                                <input type="checkbox" name="r" value="-2" id="r3" onChange={this.onRChange}/><label
+                                <input type="checkbox" name="r" value="-2" id="r3" checked={this.state.r3Checked} onChange={this.onRChange}/><label
                                 className="form-check-label" htmlFor="r3">
                                 -2
                             </label>
-                                <input type="checkbox" name="r" value="-1" id="r4" onChange={this.onRChange}/><label
+                                <input type="checkbox" name="r" value="-1" id="r4" checked={this.state.r4Checked} onChange={this.onRChange}/><label
                                 className="form-check-label" htmlFor="r4">
                                 -1
                             </label>
-                                <input type="checkbox" name="r" value="0" id="r5" onChange={this.onRChange}/><label
+                                <input type="checkbox" name="r" value="0" id="r5" checked={this.state.r5Checked} onChange={this.onRChange}/><label
                                 className="form-check-label" htmlFor="r5">
                                 0
                             </label>
-                                <input type="checkbox" name="r" value="1" id="r6" onChange={this.onRChange}/><label
+                                <input type="checkbox" name="r" value="1" id="r6" checked={this.state.r6Checked} onChange={this.onRChange}/><label
                                 className="form-check-label" htmlFor="r6">
                                 1
                             </label>
-                                <input type="checkbox" name="r" value="2" id="r7" onChange={this.onRChange}/><label
+                                <input type="checkbox" name="r" value="2" id="r7" checked={this.state.r7Checked} onChange={this.onRChange}/><label
                                 className="form-check-label" htmlFor="r7">
                                 2
                             </label>
-                                <input type="checkbox" name="r" value="3" id="r8" onChange={this.onRChange}/><label
+                                <input type="checkbox" name="r" value="3" id="r8" checked={this.state.r8Checked} onChange={this.onRChange}/><label
                                 className="form-check-label" htmlFor="r8">
                                 3
                             </label>
-                                <input type="checkbox" name="r" value="4" id="r9" onChange={this.onRChange}/><label
+                                <input type="checkbox" name="r" value="4" id="r9" checked={this.state.r9Checked}onChange={this.onRChange}/><label
                                 className="form-check-label" htmlFor="r9">
                                 4
                             </label>
@@ -269,7 +310,7 @@ class CoordForm extends React.Component {
 
 
 ReactDOM.render(
-    <CoordForm x="-4"/>,
+    <CoordForm x="-4" r="-4"/>,
     document.getElementById("app")
 );
 
