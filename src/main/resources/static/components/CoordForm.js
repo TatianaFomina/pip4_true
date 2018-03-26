@@ -150,7 +150,7 @@ class CoordForm extends React.Component {
                 break;
         }
         //var canvas = CanvasComponent;
-        CanvasComponent.state.onRChange(val);
+        //CanvasComponent.state.onRChange(val);
         //this.setState({r: val, rIsValid: valid});
         //this.handleRChange();
         //var r = this.state.r;
