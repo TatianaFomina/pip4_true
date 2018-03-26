@@ -13,6 +13,7 @@ class CanvasComponent extends React.Component {
     componentDidMount(r = this.state.r) {
         this.updateCanvas(r);
     }
+
     componentWillReceiveProps(nextProps) {
         this.setState({
             r: nextProps.r
@@ -20,56 +21,61 @@ class CanvasComponent extends React.Component {
         var r = nextProps.r;
         //this.updateCanvas(nextProps.r);
         var context = this.state.context;
+        if (r< 0){
+            r = -r;
+        }
         // context.closePath();
         // context.strokeStyle = "black";
         // context.fillStyle = "black";
         // context.stroke();
         //render();
-       // this.forceUpdate()
+        // this.forceUpdate()
         //alert("Update!");
         //context.fillRect(150, 150, 65, 130);
         context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-        //прямоугольник
-        context.beginPath();
-        context.moveTo(150, 150);
-        context.rect(85, 150, 65, 130);
-        context.closePath();
-        context.strokeStyle = "blue";
-        context.fillStyle = "blue";
-        context.strokeStyle = "#3d7bb0";
-        context.fillStyle = "#3d7bb0";
-        context.fill();
-        context.stroke();
+        if (r != 0) {
+            //прямоугольник
+            context.beginPath();
+            context.moveTo(150, 150);
+            context.rect(85, 150, 65, 130);
+            context.closePath();
+            context.strokeStyle = "blue";
+            context.fillStyle = "blue";
+            context.strokeStyle = "#3d7bb0";
+            context.fillStyle = "#3d7bb0";
+            context.fill();
+            context.stroke();
 
-        // сектор
-        context.beginPath();
-        // context.moveTo(150, 20);
-        context.moveTo(150, 150);
-        context.arc(150, 150, 130, 1.5 * Math.PI, 0 * Math.PI);
-        context.closePath();
-        context.strokeStyle = "blue";
-        context.fillStyle = "blue";
-        context.strokeStyle = "#3d7bb0";
-        context.fillStyle = "#3d7bb0";
-        context.fill();
-        context.stroke();
+            // сектор
+            context.beginPath();
+            // context.moveTo(150, 20);
+            context.moveTo(150, 150);
+            context.arc(150, 150, 130, 1.5 * Math.PI, 0 * Math.PI);
+            context.closePath();
+            context.strokeStyle = "blue";
+            context.fillStyle = "blue";
+            context.strokeStyle = "#3d7bb0";
+            context.fillStyle = "#3d7bb0";
+            context.fill();
+            context.stroke();
 
-        //треугольник
-        context.beginPath();
-        context.moveTo(150, 280);
-        context.lineTo(280, 150);
-        context.lineTo(150, 150);
-        context.lineTo(150, 280);
-        context.closePath();
-        context.strokeStyle = "blue";
-        context.fillStyle = "blue";
-        context.strokeStyle = "#3d7bb0";
-        context.fillStyle = "#3d7bb0";
-        context.fill();
-        context.stroke();
+            //треугольник
+            context.beginPath();
+            context.moveTo(150, 280);
+            context.lineTo(280, 150);
+            context.lineTo(150, 150);
+            context.lineTo(150, 280);
+            context.closePath();
+            context.strokeStyle = "blue";
+            context.fillStyle = "blue";
+            context.strokeStyle = "#3d7bb0";
+            context.fillStyle = "#3d7bb0";
+            context.fill();
+            context.stroke();
 
-        context.strokeStyle = "black";
-        context.fillStyle = "black";
+            context.strokeStyle = "black";
+            context.fillStyle = "black";
+        }
         //отрисовка осей
         context.beginPath();
         context.font = "10px Verdana";
@@ -88,41 +94,43 @@ class CanvasComponent extends React.Component {
         context.lineTo(285, 155);
         context.fillText("X", 290, 135);
         //var r = 10;
-        // деления X
-        context.moveTo(145, 20);
-        context.lineTo(155, 20);
-        context.fillText(r, 160, 20);
-        context.moveTo(145, 85);
-        context.lineTo(155, 85);
-        context.fillText((r / 2), 160, 78);
-        context.moveTo(145, 215);
-        context.lineTo(155, 215);
-        context.fillText(-(r / 2), 160, 215);
-        context.moveTo(145, 280);
-        context.lineTo(155, 280);
-        context.fillText(-r, 160, 280);
-        // деления Y
-        context.moveTo(20, 145);
-        context.lineTo(20, 155);
-        context.fillText(-r, 20, 170);
-        context.moveTo(85, 145);
-        context.lineTo(85, 155);
-        context.fillText(-(r / 2), 70, 170);
-        context.moveTo(215, 145);
-        context.lineTo(215, 155);
-        context.fillText((r / 2), 215, 170);
-        context.moveTo(280, 145);
-        context.lineTo(280, 155);
-        context.fillText(r, 280, 170);
-
+        if (r != 0) {
+            // деления X
+            context.moveTo(145, 20);
+            context.lineTo(155, 20);
+            context.fillText(r, 160, 20);
+            context.moveTo(145, 85);
+            context.lineTo(155, 85);
+            context.fillText((r / 2), 160, 78);
+            context.moveTo(145, 215);
+            context.lineTo(155, 215);
+            context.fillText(-(r / 2), 160, 215);
+            context.moveTo(145, 280);
+            context.lineTo(155, 280);
+            context.fillText(-r, 160, 280);
+            // деления Y
+            context.moveTo(20, 145);
+            context.lineTo(20, 155);
+            context.fillText(-r, 20, 170);
+            context.moveTo(85, 145);
+            context.lineTo(85, 155);
+            context.fillText(-(r / 2), 70, 170);
+            context.moveTo(215, 145);
+            context.lineTo(215, 155);
+            context.fillText((r / 2), 215, 170);
+            context.moveTo(280, 145);
+            context.lineTo(280, 155);
+            context.fillText(r, 280, 170);
+        }
         context.closePath();
+
         context.strokeStyle = "black";
         context.fillStyle = "black";
         context.stroke();
     }
 
     _onMouseMove(e) {
-        this.setState({ x: e.screenX, y: e.screenY });
+        this.setState({x: e.screenX, y: e.screenY});
     }
 
     // Изменение x, проверка на пустоту, валидация
@@ -135,19 +143,23 @@ class CanvasComponent extends React.Component {
         e.preventDefault();
         var context = this.state.context;
         var r = this.state.r;
-        var x = (e.nativeEvent.offsetX - 150) / r;
+        if (r < 0) {
+            r = -r;
+        }
+
+        var x = ((e.nativeEvent.offsetX - 150) / 150) * r;
         var ex = e.nativeEvent.offsetX;
         var ey = e.nativeEvent.offsetY;
-        var y = (-(e.nativeEvent.offsetY - 150)) / r;
-        if ((x > 0) && (y < 0)){
-            x = x - 0.5*r/10;
-            y = y + 0.5*r/10;
+        var y = (-((e.nativeEvent.offsetY - 150)) / 150) * r;
+        if ((x > 0) && (y < 0)) {
+            x = x - 0.5 * r / 10;
+            y = y + 0.5 * r / 10;
         }
-        if ((x < 0) && (y < 0)){
-            x = x + 0.5*r/10;
-            y = y + 0.5*r/10;
+        if ((x < 0) && (y < 0)) {
+            x = x + 0.5 * r / 10;
+            y = y + 0.5 * r / 10;
         }
-        alert(ex + " " + ey + " ");
+        //alert(ex + " " + ey + " ");
 
         var http_request = new XMLHttpRequest();
         if (window.XMLHttpRequest) {
@@ -160,9 +172,9 @@ class CanvasComponent extends React.Component {
         http_request.onreadystatechange = function () {
             if (http_request.readyState === XMLHttpRequest.DONE && http_request.status === 200) {
                 if (http_request.responseText === "true") {
-                    alert("Попадание");
+                    // alert("Попадание");
                     context.beginPath();
-                    context.arc(150 + x * (130/ r), 150 - y * (130/ r), 4, 0, 2 * Math.PI);
+                    context.arc(150 + x * (130 / r), 150 - y * (130 / r), 4, 0, 2 * Math.PI);
                     context.fillStyle = 'green';
                     context.fill();
                     context.lineWidth = 1;
@@ -178,14 +190,14 @@ class CanvasComponent extends React.Component {
                         "</tr>");
                 }
                 else {
-                     alert("Не попал");
-                     context.beginPath();
-                     context.arc(150 + x* (130/ r), 150 - y* (130/ r), 4, 0, 2 * Math.PI);
-                     context.fillStyle = 'red';
-                     context.fill();
-                     context.lineWidth = 1;
-                     context.strokeStyle = '#003300';
-                     context.stroke();
+                    // alert("Не попал");
+                    context.beginPath();
+                    context.arc(150 + x * (130 / r), 150 - y * (130 / r), 4, 0, 2 * Math.PI);
+                    context.fillStyle = 'red';
+                    context.fill();
+                    context.lineWidth = 1;
+                    context.strokeStyle = '#003300';
+                    context.stroke();
                     $("#table-point").append("<tr>" +
                         "<td>" + x + "</td>" +
                         "<td>" + y + "</td>" +
@@ -299,7 +311,8 @@ class CanvasComponent extends React.Component {
 
     render() {
         return (
-            <canvas ref="canvas" onMouseMove={this._onMouseMove.bind(this)} width={300} height={300} onClick={this.handleClick}/>
+            <canvas ref="canvas" onMouseMove={this._onMouseMove.bind(this)} width={300} height={300}
+                    onClick={this.handleClick}/>
         );
     }
 }
