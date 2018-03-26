@@ -26,7 +26,7 @@ public class AccessFilter implements Filter {
         HttpServletRequest httpReq = (HttpServletRequest) request;
         HttpServletResponse httpResp = (HttpServletResponse) response;
         String[] tokens = httpReq.getRequestURI().split("\\.");
-        System.out.println("in filter, URI: " + httpReq.getRequestURI()+ " ext: "+tokens[tokens.length - 1]+"\nContextPath: " + httpReq.getContextPath());
+        //System.out.println("in filter, URI: " + httpReq.getRequestURI()+ " ext: "+tokens[tokens.length - 1]+"\nContextPath: " + httpReq.getContextPath());
         boolean loginRequest = httpReq.getRequestURI().equals("/signin");
         boolean loginFound = false;
         if((httpReq.getSession().getAttribute("username") != null) && !httpReq.getSession().getAttribute("username").equals(""))

@@ -24,6 +24,7 @@ public class CommandLineRunner implements org.springframework.boot.CommandLineRu
     @Override
     public void run(String... strings) throws Exception {
         repository.save(new UserAccount("admin", String.valueOf("admin".hashCode())));
+        repository.save(new UserAccount("1", String.valueOf("1".hashCode())));
         repository.findAll().forEach(System.out::println);
     }
 }
