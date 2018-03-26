@@ -27,10 +27,10 @@ class CanvasComponent extends React.Component {
         e.preventDefault();
         var context = this.state.context;
         var r = this.state.r;
-        var x = (e.screenX - 345) / r;
-        var ex = e.screenX - e.nativeEvent.offsetX;
-        var ey = e.screenY - e.nativeEvent.offsetY;
-        var y = (-(e.screenY - 295)) / r;
+        var x = (e.nativeEvent.offsetX - 150) / r;
+        var ex = e.nativeEvent.offsetX;
+        var ey = e.nativeEvent.offsetY;
+        var y = (-(e.nativeEvent.offsetY - 150)) / r;
         if ((x > 0) && (y < 0)){
             x = x - 0.5*r/10;
             y = y + 0.5*r/10;
@@ -39,7 +39,7 @@ class CanvasComponent extends React.Component {
             x = x + 0.5*r/10;
             y = y + 0.5*r/10;
         }
-        alert(e.x + " " + e.y + " ");
+        alert(ex + " " + ey + " ");
 
         var http_request = new XMLHttpRequest();
         if (window.XMLHttpRequest) {
