@@ -5,12 +5,25 @@ var createReactClass = require('create-react-class');
 class CanvasComponent extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {r: 10, context: null};
+        this.state = {r: props.r, context: null};
         this.handleClick = this.handleClick.bind(this);
+        this.updateCanvas = this.updateCanvas.bind(this);
     }
 
-    componentDidMount(r = 10) {
+    componentDidMount(r = this.state.r) {
         this.updateCanvas(r);
+    }
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            r: nextProps.r
+        });
+        //var r = this.state.r;
+        //this.updateCanvas(nextProps.r);
+        var context = this.state.context;
+        context.closePath();
+        context.strokeStyle = "black";
+        context.fillStyle = "black";
+        context.stroke();
     }
 
     _onMouseMove(e) {

@@ -27,6 +27,7 @@ class CoordForm extends React.Component {
         this.onYChange = this.onYChange.bind(this);
         this.onRChange = this.onRChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleRChange = this.handleRChange.bind(this);
     }
 
     validateY(y) {
@@ -88,6 +89,11 @@ class CoordForm extends React.Component {
 
     }
 
+    handleRChange () {
+        var r = this.state.r;
+        this.props.updateShared(r);
+    }
+
     onYChange(e) {
         var val = e.target.value;
         //alert(this.state.yIsEmpty);
@@ -144,13 +150,16 @@ class CoordForm extends React.Component {
                 break;
         }
         //this.setState({r: val, rIsValid: valid});
+        //this.handleRChange();
+        //var r = this.state.r;
+        this.props.updateShared(val);
     }
 
     handleSubmit(e) {
         e.preventDefault();
         // if (!this.state.yIsValid)
         //     alert("y value must be between -3 and 3");
-        if (/*this.state.xIsValid === true && */this.state.yIsValid === true/* && this.state.rIsValid === true*/) {
+        if (/*this.state.xIsValid === true && */this.state.yIsValid === true && this.state.rIsValid === true) {
             var http_request = new XMLHttpRequest();
             if (window.XMLHttpRequest) {
                 http_request = new XMLHttpRequest();
@@ -206,7 +215,7 @@ class CoordForm extends React.Component {
                         <div className="form-group" id="Coord">
                             <div className=" form-check ">
                                 <p className="float-left"><b>X coordinate:</b></p>
-                                <input type="checkbox" name="x" value="-4" id="x1" checked={this.state.x1Checked} onChange={this.onXChange}/><label
+                                <input type="checkbox" name="x" value="-4" id="x1" checked={this.state.x1Checked} onChange={this.onXChange} /><label
                                 className="form-check-label"
                                 htmlFor="x1">
                                 -4
@@ -256,25 +265,25 @@ class CoordForm extends React.Component {
                             <br/>
                             <div className=" form-check ">
                                 <p><b>Radius:</b></p>
-                                <input type="checkbox" name="r" value="-4" id="r1"  checked={this.state.r1Checked} onChange={this.onRChange}/><label
+                                <input type="checkbox" name="r" value="-4" id="r1"  checked={this.state.r1Checked} onChange={this.onRChange} /><label
                                 className="form-check-label"
                                 htmlFor="r1">
                                 -4
                             </label>
-                                <input type="checkbox" name="r" value="-3" id="r2" checked={this.state.r2Checked} onChange={this.onRChange}/><label
+                                <input type="checkbox" name="r" value="-3" id="r2" checked={this.state.r2Checked} onChange={this.onRChange} /><label
                                 className="form-check-label"
                                 htmlFor="r2">
                                 -3
                             </label>
-                                <input type="checkbox" name="r" value="-2" id="r3" checked={this.state.r3Checked} onChange={this.onRChange}/><label
+                                <input type="checkbox" name="r" value="-2" id="r3" checked={this.state.r3Checked} onChange={this.onRChange} /><label
                                 className="form-check-label" htmlFor="r3">
                                 -2
                             </label>
-                                <input type="checkbox" name="r" value="-1" id="r4" checked={this.state.r4Checked} onChange={this.onRChange}/><label
+                                <input type="checkbox" name="r" value="-1" id="r4" checked={this.state.r4Checked} onChange={this.onRChange} /><label
                                 className="form-check-label" htmlFor="r4">
                                 -1
                             </label>
-                                <input type="checkbox" name="r" value="0" id="r5" checked={this.state.r5Checked} onChange={this.onRChange}/><label
+                                <input type="checkbox" name="r" value="0" id="r5" checked={this.state.r5Checked} onChange={this.onRChange} /><label
                                 className="form-check-label" htmlFor="r5">
                                 0
                             </label>
@@ -282,15 +291,15 @@ class CoordForm extends React.Component {
                                 className="form-check-label" htmlFor="r6">
                                 1
                             </label>
-                                <input type="checkbox" name="r" value="2" id="r7" checked={this.state.r7Checked} onChange={this.onRChange}/><label
+                                <input type="checkbox" name="r" value="2" id="r7" checked={this.state.r7Checked} onChange={this.onRChange} /><label
                                 className="form-check-label" htmlFor="r7">
                                 2
                             </label>
-                                <input type="checkbox" name="r" value="3" id="r8" checked={this.state.r8Checked} onChange={this.onRChange}/><label
+                                <input type="checkbox" name="r" value="3" id="r8" checked={this.state.r8Checked} onChange={this.onRChange} /><label
                                 className="form-check-label" htmlFor="r8">
                                 3
                             </label>
-                                <input type="checkbox" name="r" value="4" id="r9" checked={this.state.r9Checked}onChange={this.onRChange}/><label
+                                <input type="checkbox" name="r" value="4" id="r9" checked={this.state.r9Checked} onChange={this.onRChange} /><label
                                 className="form-check-label" htmlFor="r9">
                                 4
                             </label>
